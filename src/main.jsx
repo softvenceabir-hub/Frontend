@@ -11,12 +11,14 @@ import {
 } from "react-router";
 import Rootlayout from "./components/Layouts/Rootlayout.jsx";
 import Shop from "./Pages/Shop/Shop.jsx";
+import SingleProduct from "./Pages/SingleProduct/SingleProduct.jsx";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       <Route path="/" element={<Rootlayout />}>
         <Route index element={<App />} />
         <Route path="/shop" element={<Shop></Shop>} />
+        <Route path='/singleProduct/:id' element={<SingleProduct></SingleProduct>} />
       </Route>
     </Route>
   )
