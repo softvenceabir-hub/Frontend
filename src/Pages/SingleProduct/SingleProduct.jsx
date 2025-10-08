@@ -1,6 +1,20 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router";
 
 const SingleProduct = () => {
+  const {id}=useParams();
+  console.log(id)
+  const[singleProduct,setSingleProduct]=useState({})
+  useEffect(() => {
+axios.get(`https://dummyjson.com/products/${id}`).then((response) => {
+    setSingleProduct(response.data);
+    }).catch((error) => {
+      console.error("Error fetching product data:", error);
+    });
+  }, []);
+  console.log(singleProduct)
+
   return (
     <section className="py-10 bg-white md:py-16 dark:bg-black antialiased">
       <div className="max-w-screen-xl px-4 lg:pt-30 pt-50 mx-auto 2xl:px-0">
@@ -9,12 +23,12 @@ const SingleProduct = () => {
           <div className="shrink-0 max-w-md lg:max-w-lg mx-auto aspect-square">
             <img
               className="w-full h-full object-cover rounded-2xl shadow-md dark:hidden"
-              src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front.svg"
+              src={singleProduct.thumbnail}
               alt="Product"
             />
             <img
               className="w-full h-full object-cover rounded-2xl shadow-md hidden dark:block"
-              src="https://flowbite.s3.amazonaws.com/blocks/e-commerce/imac-front-dark.svg"
+                src={singleProduct.thumbnail}
               alt="Product"
             />
           </div>
@@ -22,13 +36,13 @@ const SingleProduct = () => {
           {/* Product Details */}
           <div className="mt-8 lg:mt-0">
             <h1 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white leading-snug">
-              Apple iMac 24" M1 8GB 256GB SSD (Pink)
+            {singleProduct.title}
             </h1>
 
             {/* Price & Rating */}
             <div className="mt-4 sm:flex sm:items-center sm:gap-5">
               <p className="text-2xl font-extrabold text-[#00786f] sm:text-3xl">
-                $1,249.99
+                ৳ {singleProduct.price}
               </p>
 
               <div className="flex items-center gap-2 mt-3 sm:mt-0">
@@ -99,16 +113,9 @@ const SingleProduct = () => {
 
             {/* Description */}
             <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
-              Studio-quality three mic array for crystal-clear calls and voice
-              recordings. Six-speaker sound system for a remarkably robust and
-              high-quality audio experience. Up to 256GB of ultrafast SSD
-              storage.
+            {singleProduct.description}
             </p>
-            <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-              Two Thunderbolt USB 4 ports and up to two USB 3 ports. Ultrafast
-              Wi-Fi 6 and Bluetooth 5.0 wireless. Color matched Magic Mouse with
-              Magic Keyboard or Magic Keyboard with Touch ID.
-            </p>
+          
           </div>
         </div>
       </div>

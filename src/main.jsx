@@ -12,6 +12,8 @@ import {
 import Rootlayout from "./components/Layouts/Rootlayout.jsx";
 import Shop from "./Pages/Shop/Shop.jsx";
 import SingleProduct from "./Pages/SingleProduct/SingleProduct.jsx";
+import Cart from "./Pages/Cart/Cart.jsx";
+import Checkout from "./Pages/Checkout/Checkout.jsx";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
@@ -19,6 +21,8 @@ const router = createBrowserRouter(
         <Route index element={<App />} />
         <Route path="/shop" element={<Shop></Shop>} />
         <Route path='/singleProduct/:id' element={<SingleProduct></SingleProduct>} />
+        <Route path='/cart' element={<Cart></Cart>} />
+        <Route path="/checkout" element={<Checkout></Checkout>}/>
       </Route>
     </Route>
   )

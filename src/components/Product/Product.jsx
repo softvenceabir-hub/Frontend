@@ -69,7 +69,7 @@ const Product = ({ productinfo }) => {
               </TooltipProvider>
             </div>
 
-            {/* 📱 Mobile Icons */}
+            {/* Mobile Icons */}
             <div className="flex lg:hidden absolute bottom-2 left-1/2 -translate-x-1/2 space-x-2">
               <Button
                 variant="ghost"
@@ -81,7 +81,7 @@ const Product = ({ productinfo }) => {
               <Button
                 variant="ghost"
                 size="icon"
-                onClick={() => setOpen(true)} // ✅ Mobile e popup open করবে
+                onClick={() => setOpen(true)} 
                 className="bg-white/70 rounded-full dark:bg-gray-800 dark:text-white hover:bg-gray-200 transition-colors"
               >
                 <IoEyeSharp className="size-4 text-[#00786f]" />
@@ -111,22 +111,26 @@ const Product = ({ productinfo }) => {
         </a>
       </div>
 
-      {/* 🔥 Quick View Modal (Works on Mobile too) */}
+      {/* Quick View Modal (Works on Mobile too) */}
       <Dialog open={open} onOpenChange={setOpen}>
         <DialogContent className="max-w-[95%] sm:max-w-3xl bg-white dark:bg-black rounded-2xl">
-          <DialogHeader>
-            <DialogTitle className="text-lg sm:text-xl font-semibold text-gray-800 dark:text-white">
-              {productinfo?.title}
-            </DialogTitle>
-          </DialogHeader>
+        
 
           <div className="grid md:grid-cols-2 gap-6 mt-4">
+            
             <img
               src={productinfo?.thumbnail}
               alt={productinfo?.title}
               className="rounded-lg object-cover w-full h-[220px] sm:h-[250px]"
             />
+            
             <div>
+                <DialogHeader>
+            <DialogTitle className="text-lg lg:mb-10 sm:text-xl font-semibold text-gray-800 dark:text-white">
+              {productinfo?.title}
+            </DialogTitle>
+          </DialogHeader>
+              
               <p className="text-gray-600 dark:text-gray-400 mb-3 text-sm sm:text-base">
                 {productinfo?.description || "No description available."}
               </p>
