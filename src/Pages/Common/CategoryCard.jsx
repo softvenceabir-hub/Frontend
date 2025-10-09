@@ -1,118 +1,100 @@
-import React, { useState } from "react";
-import {
-  Card,
+import React, { useState, useRef, useEffect } from "react";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { ChevronDown, ChevronUp, Search } from "lucide-react";
 
-  CardContent,
-
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { ChevronDown, ChevronUp } from "lucide-react";
 const CategoryCard = () => {
-    const [categoryshow, setCategoryshow] = useState(false); // moblie menu
-  const Categorie = [
-    {
-      src: "https://img.icons8.com/color/96/pill.png",
-      title: "Medicine",
-    },
-    {
-      src: "https://img.icons8.com/color/96/grocery-bag.png",
-      title: "Grocery",
-    },
-    {
-      src: "https://img.icons8.com/color/96/microscope.png",
-      title: "Lab Tests",
-    },
-    {
-      src: "https://img.icons8.com/color/96/stethoscope.png",
-      title: "Healthcare",
-    },
-    {
-      src: "https://img.icons8.com/color/96/face-mask.png",
-      title: "Beauty Care",
-    },
-    {
-      src: "https://img.icons8.com/color/96/heart-with-pulse.png",
-      title: "Health",
-    },
-    {
-      src: "https://img.icons8.com/color/96/love-potion.png",
-      title: "Sexual Wellness",
-    },
-    {
-      src: "https://img.icons8.com/color/96/baby-bottle.png",
-      title: "Baby Care",
-    },
-    {
-      src: "https://img.icons8.com/color/96/herbal-medicine.png",
-      title: "Herbal",
-    },
-    {
-      src: "https://img.icons8.com/color/96/spray.png",
-      title: "Home Care",
-    },
-    {
-      src: "https://img.icons8.com/color/96/open-book--v1.png",
-      title: "Books",
-    },
-    {
-      src: "https://img.icons8.com/color/96/vitamins.png",
-      title: "Supplement",
-    },
-    {
-      src: "https://img.icons8.com/color/96/apple.png",
-      title: "Food",
-    },
-    {
-      src: "https://img.icons8.com/color/96/dog.png",
-      title: "Pet Care",
-    },
-    {
-      src: "https://img.icons8.com/color/96/homeopathy.png",
-      title: "Homeopathy",
-    },
-    {
-      src: "https://img.icons8.com/color/96/veterinarian.png",
-      title: "Veterinary",
-    },
-  ];
-  return (
-    <div>
-      <Card className="border-[1px] border-[#00786F]">
-        <CardHeader>
-           <div className="flex justify-between items-center">
-                  <CardTitle className="lg:-mb-4">All Category</CardTitle>
+  const [categoryshow, setCategoryshow] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const cardRef = useRef(null);
 
-                  {/* Mobile Toggle Button */}
-                  <button
-                    onClick={() => setCategoryshow(!categoryshow)}
-                    className="flex items-center gap-1 lg:hidden text-sm font-medium"
-                  >
-                    {categoryshow ? (
-                      <ChevronUp className="w-6 h-6 transition-transform duration-200" />
-                    ) : (
-                      <ChevronDown className="w-6 h-6 transition-transform duration-200" />
-                    )}
-                  </button>
-                </div>
-     
+  const Categorie = [
+    "Medicine",
+    "Grocery",
+    "Lab Tests",
+    "Healthcare",
+    "Beauty Care",
+    "Health",
+    "Sexual Wellness",
+    "Baby Care",
+    "Herbal",
+    "Home Care",
+    "Books",
+    "Supplement",
+    "Food",
+    "Pet Care",
+    "Homeopathy",
+    "Veterinary",
+  ];
+
+  // Close dropdown if clicked outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (cardRef.current && !cardRef.current.contains(event.target)) {
+        setCategoryshow(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
+
+  // Filtered categories based on search
+  const filteredCategories = Categorie.filter((cat) =>
+    cat.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  return (
+    <div ref={cardRef} className="max-w-md mx-auto">
+      <Card className="border-[1px] border-[#00786F] dark:border-[#00786F] shadow-md">
+        <CardHeader>
+          <div className="flex justify-between items-center">
+            <CardTitle className="text-lg font-semibold lg:-mb-4">All Categories</CardTitle>
+
+            {/* Mobile Toggle */}
+            <button
+              onClick={() => setCategoryshow(!categoryshow)}
+              className="flex items-center gap-1 lg:hidden text-sm font-medium"
+            >
+              {categoryshow ? (
+                <ChevronUp className="w-6 h-6 transition-transform duration-200" />
+              ) : (
+                <ChevronDown className="w-6 h-6 transition-transform duration-200" />
+              )}
+            </button>
+          </div>
         </CardHeader>
-        <CardContent className={`${categoryshow ? "block" : "hidden"} lg:block`}
->
-          <ul >
-            {Categorie.map((item, index) => (
-              <li key={index} className="flex gap-3 items-center">
-                <img
+
+        <CardContent
+          className={`overflow-hidden transition-all duration-300 ${
+            categoryshow ? "max-h-[1000px]" : "max-h-0"
+          } lg:max-h-full`}
+        >
+          {/* Search Input */}
+          <div className="relative mt-2 mb-4">
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
+            <input
+              type="text"
+              placeholder="Search categories..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full px-10 py-2 text-sm border rounded-md focus:outline-none focus:ring-2 focus:ring-[#00786F] dark:bg-gray-800 dark:text-white dark:border-gray-600"
+            />
+          </div>
+
+          {/* Category List */}
+          <ul className="flex flex-col gap-3">
+            {filteredCategories.length > 0 ? (
+              filteredCategories.map((title, index) => (
+                <li
                   key={index}
-                  src={item.src}
-                  alt={item.title}
-                  className="w-6 h-6 inline-block"
-                />
-                <span className="mt-4 text-[14px] w-full hover:underline hover:text-[#00786F] font-[600] cursor-pointer">
-                  {item.title}
-                </span>
-              </li>
-            ))}
+                  className="flex items-center gap-3 cursor-pointer hover:text-white hover:bg-[#00786F] transition-colors py-2 px-3 rounded-md"
+                >
+              
+                  <span className="text-[14px] font-semibold">{title}</span>
+                </li>
+              ))
+            ) : (
+              <li className="text-gray-400 text-sm">No categories found</li>
+            )}
           </ul>
         </CardContent>
       </Card>
@@ -121,6 +103,3 @@ const CategoryCard = () => {
 };
 
 export default CategoryCard;
-
-       
-
