@@ -91,23 +91,31 @@ const Product = ({ productinfo }) => {
 
           {/* Title */}
           <Link to={`/singleProduct/${productinfo?.id || ""}`}>
-            <div className="flex flex-col justify-between mt-2">
-              <div className="w-full h-[1px] bg-gray-200 dark:bg-gray-600 mb-2"></div>
-              <h3 className="text-[14px] sm:text-[14px] lg:text-lg font-medium relative line-clamp-1">
-                {productinfo?.title || "No Title"}
-              </h3>
-            </div>
+      <div className="flex flex-col justify-between mt-2">
+  {/* Divider line */}
+  <div className="w-full h-[1px] bg-gray-200 dark:bg-gray-600 mb-2" />
+
+  {/* Product title centered */}
+  <h3 className="text-[14px] sm:text-[14px] lg:text-lg font-medium text-center line-clamp-1">
+    {productinfo?.title || "No Title"}
+  </h3>
+</div>
+
+
           </Link>
 
           {/* Price + Add to Cart */}
-          <div className="mt-3 lg:flex lg:justify-between lg:items-center">
-            <p className="text-[14px] sm:text-[15px] lg:text-lg font-[500] text-[#00786f] text-center lg:text-left">
-              ৳ {productinfo?.price}
-            </p>
-            <Button className="w-full sm:w-full lg:w-auto mt-2 lg:mt-0 text-[12px] sm:text-[14px] lg:text-[15px] px-3 py-2 dark:text-black font-semibold">
-              Add To Cart
-            </Button>
-          </div>
+   <div className="mt-3 flex justify-center">
+  <p className="text-[16px] font-semibold text-[#00786f] text-center">
+    ৳ {productinfo?.price}
+  </p>
+</div>
+<div className="lg:mt-3">
+  <Button className="w-full mt-2 text-[12px] sm:text-[14px] lg:text-[15px] px-3 py-2 dark:text-black font-semibold">
+    Add To Cart
+  </Button>
+</div>
+
         </a>
       </div>
 

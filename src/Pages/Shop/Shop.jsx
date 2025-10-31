@@ -9,7 +9,7 @@ const Shop = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [loading, setLoading] = useState(true);
 
-  const itemsPerPage = 12;
+  const itemsPerPage = 18;
 
   useEffect(() => {
     axios
@@ -60,7 +60,7 @@ const Shop = () => {
         <div className="lg:col-span-10 col-span-12">
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-5 gap-y-5 lg:gap-x-5 lg:gap-y-5  lg:p-0">
             {loading
-              ? Array.from({ length: 8 }).map((_, i) => <Skeleton key={i} />)
+              ? Array.from({ length: 18 }).map((_, i) => <Skeleton key={i} />)
               : currentItems.map((item, index) => (
                   <Product key={index} productinfo={item} />
                 ))}
