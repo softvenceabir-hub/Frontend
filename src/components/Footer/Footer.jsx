@@ -25,11 +25,10 @@ const Footer = ({
     {
       title: "Company",
       links: [
-        { text: "About", url: "#" },
-        { text: "Team", url: "#" },
+        { text: "About Us", url: "/aboutus" },
+        { text: "Our Team", url: "/team" },
         { text: "Blog", url: "#" },
-        { text: "Careers", url: "#" },
-        { text: "Contact", url: "#" },
+        { text: "Contact Us", url: "#" },
         { text: "Privacy", url: "#" }
       ]
     },
@@ -44,7 +43,7 @@ const Footer = ({
     {
       title: "Social",
       links: [
-        { text: "Twitter", url: "#" },
+        { text: "Twitter", url: "" },
         { text: "Instagram", url: "#" },
         { text: "LinkedIn", url: "#" }
       ]

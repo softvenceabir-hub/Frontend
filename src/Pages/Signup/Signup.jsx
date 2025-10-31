@@ -1,16 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router";
 import { HiOutlineUser, HiOutlineMail, HiOutlineLockClosed } from "react-icons/hi";
 
 const Signup = () => {
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState(""); 
+  const handleSignup = (e) => {
+    e.preventDefault();
+  console.log("Signup Details:", { fullName, email, password });
+  }
   return (
     <section className="bg-white dark:bg-black md:h-screen flex items-center justify-center px-4 py-8">
-      <div className="w-full max-w-md bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg rounded-xl p-8">
-        <h1 className="text-2xl font-bold text-center text-gray-900 dark:text-white mb-6">
+      <div className="w-full  max-w-md bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 shadow-lg rounded-xl p-8">
+        <h1 className="text-2xl font-bold text-center  text-gray-900 dark:text-white mb-6">
           Sign Up
         </h1>
 
-        <form className="space-y-5">
+        <form onSubmit={handleSignup} className="space-y-5">
           {/* Full Name */}
           <div className="relative">
             <label
@@ -21,6 +28,7 @@ const Signup = () => {
             </label>
             <HiOutlineUser className="absolute top-10 left-3 text-gray-400 dark:text-gray-400" size={20} />
             <input
+    onChange={(e)=>setFullName(e.target.value)}
               type="text"
               id="fullname"
               name="fullname"
@@ -40,6 +48,7 @@ const Signup = () => {
             </label>
             <HiOutlineMail className="absolute top-10 left-3 text-gray-400 dark:text-gray-400" size={20} />
             <input
+            onChange={(e)=>setEmail(e.target.value)}
               type="email"
               id="email"
               name="email"
@@ -59,6 +68,7 @@ const Signup = () => {
             </label>
             <HiOutlineLockClosed className="absolute top-10 left-3 text-gray-400 dark:text-gray-400" size={20} />
             <input
+            onChange={(e)=>setPassword(e.target.value)}
               type="password"
               id="password"
               name="password"

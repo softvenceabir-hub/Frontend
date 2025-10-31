@@ -1,6 +1,8 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router";
+import Zoom from 'react-medium-image-zoom'
+import 'react-medium-image-zoom/dist/styles.css'
 
 const SingleProduct = () => {
   const {id}=useParams();
@@ -20,18 +22,27 @@ axios.get(`https://dummyjson.com/products/${id}`).then((response) => {
       <div className="max-w-screen-xl px-4 lg:pt-30 pt-50 mx-auto 2xl:px-0">
         <div className="lg:grid lg:grid-cols-2 lg:gap-10 xl:gap-16">
           {/* Product Image */}
+        
           <div className="shrink-0 max-w-md lg:max-w-lg mx-auto aspect-square">
-            <img
+  
+<img
               className="w-full h-full object-cover rounded-2xl shadow-md dark:hidden"
               src={singleProduct.thumbnail}
               alt="Product"
+                 
             />
-            <img
+  
+             <Zoom>
+        
+                 <img
               className="w-full h-full object-cover rounded-2xl shadow-md hidden dark:block"
                 src={singleProduct.thumbnail}
               alt="Product"
+             
             />
+             </Zoom>
           </div>
+        
 
           {/* Product Details */}
           <div className="mt-8 lg:mt-0">
@@ -82,14 +93,14 @@ axios.get(`https://dummyjson.com/products/${id}`).then((response) => {
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"
-                    strokeWidth={2}
+                    strokeWidth={2}  
                     d="M12.01 6.001C6.5 1 1 8 5.782 13.001L12.011 20l6.23-7C23 8 17.5 1 12.01 6.002Z"
                   />
                 </svg>
                 Add to favorites
               </button>
 
-              <button className="flex items-center justify-center py-2.5 px-6 text-sm font-semibold text-white bg-[#00786f] rounded-lg hover:bg-black transition-colors">
+              <button className="flex dark:hover:bg-amber-50 dark:hover:text-[#00786F] items-center justify-center py-2.5 px-6 text-sm font-semibold text-white bg-[#00786f] rounded-lg hover:bg-black transition-colors">
                 <svg
                   className="w-5 h-5 mr-2"
                   xmlns="http://www.w3.org/2000/svg"

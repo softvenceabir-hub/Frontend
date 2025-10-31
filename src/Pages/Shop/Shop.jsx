@@ -58,7 +58,7 @@ const Shop = () => {
         </div>
 
         <div className="lg:col-span-10 col-span-12">
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-5 gap-y-5 lg:gap-x-7 lg:gap-y-7 p-2 lg:p-0">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-x-5 gap-y-5 lg:gap-x-5 lg:gap-y-5  lg:p-0">
             {loading
               ? Array.from({ length: 8 }).map((_, i) => <Skeleton key={i} />)
               : currentItems.map((item, index) => (

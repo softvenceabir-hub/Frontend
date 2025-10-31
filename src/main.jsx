@@ -8,6 +8,7 @@ import {
   createRoutesFromElements,
   Route,
   RouterProvider,
+  BrowserRouter,Routes
 } from "react-router";
 import Rootlayout from "./components/Layouts/Rootlayout.jsx";
 import Shop from "./Pages/Shop/Shop.jsx";
@@ -16,6 +17,8 @@ import Cart from "./Pages/Cart/Cart.jsx";
 import Checkout from "./Pages/Checkout/Checkout.jsx";
 import Login from "./Pages/Login/Login.jsx";
 import Signup from "./Pages/Signup/Signup.jsx";
+import AboutUs from "./Pages/AboutUs/AboutUs.jsx";
+import Team from "./Pages/Team/Team.jsx";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
@@ -26,6 +29,8 @@ const router = createBrowserRouter(
         <Route path='/singleProduct/:id' element={<SingleProduct></SingleProduct>} />
         <Route path='/cart' element={<Cart></Cart>} />
         <Route path="/checkout" element={<Checkout></Checkout>}/>
+        <Route path="/aboutus" element={<AboutUs/>} />
+        <Route path="/team" element={<Team/>}/>
        
       </Route>
       <Route path="*" element={<h1 className="text-3xl text-center pt-20">404 - Page Not Found!</h1>}>
