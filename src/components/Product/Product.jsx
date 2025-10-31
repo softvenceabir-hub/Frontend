@@ -111,7 +111,7 @@ const Product = ({ productinfo }) => {
   </p>
 </div>
 <div className="lg:mt-3">
-  <Button className="w-full mt-2 text-[12px] sm:text-[14px] lg:text-[15px] px-3 py-2 dark:text-black font-semibold">
+  <Button className="w-full mt-2 text-[12px] sm:text-[14px] lg:text-[15px] px-3 py-2 dark:text-white hover:dark:text-black font-semibold">
     Add To Cart
   </Button>
 </div>
@@ -145,7 +145,7 @@ const Product = ({ productinfo }) => {
               <p className="text-lg font-bold text-[#00786f] mb-4">
                 ৳ {productinfo?.price}
               </p>
-              <Button className="w-full dark:text-black">Add To Cart</Button>
+              <Button className="w-full dark:text-white hover:dark:text-black ">Add To Cart</Button>
             </div>
           </div>
         </DialogContent>
